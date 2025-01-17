@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Coding Event</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-container, .schedule-container {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            margin: 20px auto;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+    
+        table, th, td {
+            border: 1px solid black;
+        }
+    
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>    
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="JSPM-logo.jpeg" alt="College Logo" class="college-logo">
+            <div class="header-text">
+                <h1>JSPM's Rajarshi Shahu College of Engineering</h1>
+                <h2>
+                    An Empowered Autonomous Institute Affiliated to Savitribai Phule Pune University, Approved by AICTE<br>
+                    Accredited by NBA (UG Programs), Accredited by NAAC With "A" Grade
+                </h2>
+            </div>
+            <img src="JSPM-logo-2.jpg" alt="Founder Logo" class="founder-logo">
+        </div>
+    </header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <section id="registration" class="form-container">
+        <h2>Event Registration Form</h2>
+        <form id="registrationForm" method="POST" action="register.php">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+
+            <label for="event">Event:</label>
+            <select id="event" name="event">
+                <option value="Sports">Annual Sports Meet</option>
+                <option value="Coding Competition">Coding Competition</option>
+                <option value="Hackathon">Hackathon</option>
+            </select><br><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </section>
+
+    <section id="schedule" class="schedule-container">
+        <h2>Event Schedule</h2>
+        <table border="3">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Session</th>
+                    <th>Speaker</th>
+                </tr>
+            </thead>
+            <tbody id="schedule-body">
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('schedule.xml')
+                .then(response => response.text())
+                .then(xmlData => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(xmlData, "application/xml");
+                    const events = xml.getElementsByTagName("event");
+                    const tableBody = document.querySelector("#schedule-body");
+
+                    Array.from(events).forEach(event => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${event.getElementsByTagName("time")[0].textContent}</td>
+                            <td>${event.getElementsByTagName("session")[0].textContent}</td>
+                            <td>${event.getElementsByTagName("speaker")[0].textContent}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Error loading XML:", error));
+        });
+    </script>
+</body>
+</html>
