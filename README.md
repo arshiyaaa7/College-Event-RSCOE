@@ -1,3 +1,3 @@
 # WEB
 
-Live Demo : https://github.com/arshiyaaa7/WEB.git
+Live Demo : https://arshiyaaa7.github.io/WEB/
