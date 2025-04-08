@@ -1,4 +1,4 @@
-# 🌟 MWA Assignment - 1 🌟
+# 🌟 College Event Website 🌟
 
 Welcome to the MWA Assignment 1 project repository! This repository contains the files for the college event website **"Gandharva"**, showcasing all the necessary pages and styles. 🎉
 
