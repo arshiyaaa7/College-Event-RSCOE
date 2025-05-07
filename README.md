@@ -1,6 +1,6 @@
 # 🌟 College Event Website 🌟
 
-Welcome to the MWA Assignment 1 project repository! This repository contains the files for the college event website **"Gandharva"**, showcasing all the necessary pages and styles. 🎉
+Welcome to the RSCOE Event project repository! This repository contains the files for the college event website **"Gandharva"**, showcasing all the necessary pages and styles. 🎉
 
 ## 🌐 Live Website
 You can view the live website here: [Gandharva Event Website](https://arshiyaaa7.github.io/MWA-Assignment-1/)
